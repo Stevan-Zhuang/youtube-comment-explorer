@@ -134,7 +134,7 @@ def filter_replies(replies: List[Comment], channels: List[Channel],
     filtered_replies = []
     filtered_channels = deepcopy(channels)
     for reply in replies:
-        if "@" in reply.content:
+        if "@" == reply.content[0]:
             if reply.channel in filtered_channels:
                 filtered_channels.remove(reply.channel)
         else:
