@@ -1,3 +1,3 @@
-# YouTube Comment Exploere
+# YouTube Comment Explorer
 
 ### A program that aims use YouTube's API to identify comments on videos made by bots.
