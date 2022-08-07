@@ -8,26 +8,8 @@ from typing import List
 API_URL = "https://youtube.googleapis.com/youtube/v3"
 MAX_RESULTS = 100
 
-class Comment:
-    def __init__(self, content, channel, likes):
-        self.content = content
-        self.channel = channel
-        self.likes = likes
-
-    def __eq__(self, other):
-        if isinstance(other, Comment):
-            return (self.content == other.content
-                    and self.channel == other.channel)
-        return False
-
-    def __str__(self):
-        return f"{self.content}"
-
-    def __hash__(self):
-        return hash((self.content, self.channel))
-
 class Channel:
-    def __init__(self, channel_id, name, image_url):
+    def __init__(self, channel_id: str, name: str, image_url: str):
         self.id = channel_id
         self.name = name
         self.image_url = image_url
@@ -43,12 +25,37 @@ class Channel:
     def __hash__(self):
         return hash(self.id)
 
-def write_json(resource, params, file_path):
+class Comment:
+    def __init__(self, content: str, channel: Channel, likes: int):
+        self.content = content
+        self.channel = channel
+        self.likes = likes
+
+    def __eq__(self, other: object):
+        if isinstance(other, Comment):
+            return (self.content == other.content
+                    and self.channel == other.channel)
+        return False
+
+    def __str__(self):
+        return f"{self.content}"
+
+    def __hash__(self):
+        return hash((self.content, self.channel))
+
+def write_json(resource: str, params: dict, file_path: str) -> None:
+    """
+    Make a http request with params and write the returned data to a JSON file.
+    """
     uri = f"{API_URL}/{resource}"
     with open(file_path, "wb") as jsonfile:
         jsonfile.write(requests.get(uri, params).content)
 
-def write_top_comments(max_comments, video_id, auth_key, file_path):
+def write_top_comments(max_comments: int, video_id: str, auth_key: str,
+                       file_path: int) -> None:
+    """
+    Write the comment IDs of at most max_comments to a JSON file.
+    """
     params = {
         "maxResults": max_comments,
         "textFormat": "plainText",
@@ -58,7 +65,11 @@ def write_top_comments(max_comments, video_id, auth_key, file_path):
     }
     write_json("commentThreads", params, file_path)
 
-def write_replies(comment_id, video_id, auth_key, file_path):
+def write_replies(comment_id: str, video_id: str, auth_key: str,
+                  file_path: str) -> None:
+    """
+    Write the comment data of replies to a top level comment to a JSON file.
+    """
     params = {
         "part": "snippet",
         "textFormat": "plainText",
@@ -69,7 +80,10 @@ def write_replies(comment_id, video_id, auth_key, file_path):
     }
     write_json("comments", params, file_path)
 
-def write_channel_info(channel_id, auth_key, file_path):
+def write_channel_info(channel_id: str, auth_key: str, file_path: str) -> None:
+    """
+    Write channel information to a JSON file.
+    """
     params = {
         "part": ["snippet", "statistics"],
         "id": channel_id,
@@ -77,14 +91,17 @@ def write_channel_info(channel_id, auth_key, file_path):
     }
     write_json("channels", params, file_path)
 
-def read_json(file_path):
+def read_json(file_path: str) -> dict:
+    """
+    Return the JSON file found at file_path as a dict.
+    """
     with open(file_path, "r", encoding="utf8") as jsonfile:
         return json.load(jsonfile)
 
 def get_replies(video_id: str, auth_key: str, data_dir: str,
                 comments_sampled: int=MAX_RESULTS) -> List[Comment]:
     """
-    Return a list of replies to top comments by saving them to JSON and
+    Return a list of replies to top comments by saving them to a JSON file and
     reading it.
     """
     top_comments_path = f"{data_dir}/top_comments.json"
@@ -156,8 +173,13 @@ def get_top_filtered_replies(replies: List[Comment], n_channels: int=5,
                              minimum: int=1, sample: int=3,
                              duplicates=False) -> List[Comment]:
     """
-    Return a list of replies with sample replies from each of the top
-    n_channels commenters that appear at least minimum times.
+    Return a list of replies with replies from each of the top
+    commenters that appear at least a certain amount of times.
+
+    n_channels: the number of channels to show comments from
+    minimum: amount of times a comment must appear to be shown
+    sample: the number of comments to show from each channel
+    duplicates: show duplicates comments if True
     """
     top_channels = aggregate_channels(replies)
     filtered_replies = filter_replies(replies, top_channels,
@@ -172,6 +194,9 @@ def get_top_filtered_replies(replies: List[Comment], n_channels: int=5,
         return list(dict.fromkeys(result))
 
 def format_replies(replies: List[Comment]) -> str:
+    """
+    Return a string representation of replies that can be easily read.
+    """
     result = (f"Channel: {replies[0].channel}\n"
                 f"{replies[0]} 👍{replies[0].likes}\n")
     for idx in range(1, len(replies)):
