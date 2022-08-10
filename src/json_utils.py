@@ -70,7 +70,7 @@ def get_replies(video_id: str, auth_key: str, data_dir: str,
     reading it.
     """
     top_comments_path = f"{data_dir}/top_comments.json"
-    write_top_comments(comments_sampled, video_id, auth_key, top_comments_path)
+    write_top_comments(video_id, auth_key, top_comments_path, comments_sampled)
     top_comments_data = read_json(top_comments_path)
     comment_ids = [
         comment_data["id"] for comment_data in top_comments_data["items"]
