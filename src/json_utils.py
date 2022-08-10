@@ -16,8 +16,8 @@ def write_json(resource: str, params: dict, file_path: str) -> None:
     with open(file_path, "wb") as jsonfile:
         jsonfile.write(requests.get(uri, params).content)
 
-def write_top_comments(max_comments: int, video_id: str, auth_key: str,
-                       file_path: int) -> None:
+def write_top_comments(video_id: str, auth_key: str, file_path: int,
+                       max_comments: int=MAX_RESULTS) -> None:
     """
     Write the comment IDs of at most max_comments to a JSON file.
     """
