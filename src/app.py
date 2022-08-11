@@ -32,7 +32,6 @@ def results():
             pass
 
     try:
-        print(search)
         replies = get_replies(search, auth_key, "data")
         parameters = {
             "n_reply": len(replies),
