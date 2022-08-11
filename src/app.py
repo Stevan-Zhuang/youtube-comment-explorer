@@ -24,7 +24,7 @@ def results():
     if search.startswith("https://www.youtube.com/watch"):
         # Take the video id out of the url
         try:
-            search = re.search("\?v=[^&]+&", search).group()
+            search = re.search("\?v=[^&]+(&|$)", search).group()
             search = search[len("?v="):]
             if search.endswith("&"):
                 search = search[:-1]
@@ -32,6 +32,7 @@ def results():
             pass
 
     try:
+        print(search)
         replies = get_replies(search, auth_key, "data")
         parameters = {
             "n_reply": len(replies),
