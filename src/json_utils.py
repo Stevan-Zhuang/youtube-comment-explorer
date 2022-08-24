@@ -45,17 +45,6 @@ def write_replies(comment_id: str, video_id: str, auth_key: str,
     }
     write_json("comments", params, file_path)
 
-def write_channel_info(channel_id: str, auth_key: str, file_path: str) -> None:
-    """
-    Write channel information to a JSON file.
-    """
-    params = {
-        "part": ["snippet", "statistics"],
-        "id": channel_id,
-        "key": auth_key,
-    }
-    write_json("channels", params, file_path)
-
 def read_json(file_path: str) -> dict:
     """
     Return the JSON file found at file_path as a dict.
