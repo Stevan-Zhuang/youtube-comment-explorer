@@ -72,16 +72,3 @@ def get_top_filtered_replies(replies: List[Comment], n_channels: int=5,
         return result
     else:
         return list(dict.fromkeys(result))
-
-def format_replies(replies: List[Comment]) -> str:
-    """
-    Return a string representation of replies that can be easily read.
-    """
-    result = (f"Channel: {replies[0].channel}\n"
-                f"{replies[0]} 👍{replies[0].likes}\n")
-    for idx in range(1, len(replies)):
-        if replies[idx].channel != replies[idx - 1].channel:
-            result += f"\nChannel: {replies[idx].channel}\n"
-
-        result += f"{replies[idx]} 👍{replies[idx].likes}\n"
-    return result

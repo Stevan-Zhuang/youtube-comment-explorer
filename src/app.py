@@ -1,5 +1,5 @@
 from json_utils import get_replies, write_top_filtered_replies
-from utils import format_replies, get_top_filtered_replies, format_replies
+from utils import get_top_filtered_replies
 from flask import Flask, render_template, request, abort
 import re
 import os
@@ -34,7 +34,7 @@ def results():
     try:
         replies = get_replies(search, auth_key, "data")
         write_top_filtered_replies(
-            get_top_filtered_replies(replies), "data"
+            get_top_filtered_replies(replies), "src/static/json"
         )
         return render_template("results.html")
 
