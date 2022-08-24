@@ -1,5 +1,5 @@
-from json_utils import get_replies
-from utils import get_top_filtered_replies, format_replies
+from json_utils import get_replies, write_top_filtered_replies
+from utils import format_replies, get_top_filtered_replies, format_replies
 from flask import Flask, render_template, request, abort
 import re
 import os
@@ -33,11 +33,11 @@ def results():
 
     try:
         replies = get_replies(search, auth_key, "data")
-        parameters = {
-            "n_reply": len(replies),
-            "replies": format_replies(get_top_filtered_replies(replies))
-        }
-        return render_template("results.html", params=parameters)
+        write_top_filtered_replies(
+            get_top_filtered_replies(replies), "data"
+        )
+        return render_template("results.html")
+
     except:
         # Do video search instead
         abort(400, description="Invalid search (temporary error)")

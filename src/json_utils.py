@@ -79,3 +79,36 @@ def get_replies(video_id: str, auth_key: str, data_dir: str,
                             snippet["likeCount"])
             replies.append(reply)
     return replies
+
+def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
+    """
+    Write the data of top filtered comments to a JSON file.
+    """
+    json_data = {}
+    if len(replies) != 0:
+        json_data["items"] = []
+        last_idx = len(replies) - 1
+
+        channel_replies = []
+        for idx in range(len(replies)):
+            channel_replies.append({
+                "content": replies[idx].content,
+                "likes": replies[idx].likes
+            })
+
+            if (idx != last_idx
+                    and replies[idx + 1].channel != replies[idx].channel):
+                json_data["items"].append({
+                    "channel_name": replies[idx].channel.name,
+                    "comments": channel_replies
+                })
+                channel_replies.clear()
+                
+            json_data["items"].append({
+                "channel_name": replies[last_idx].channel.name,
+                "comments": channel_replies
+            })
+
+    replies_path = f"{data_dir}/top_filtered_replies.json"
+    with open(replies_path, "w", encoding="utf8") as jsonfile:
+        json.dump(json_data, jsonfile, indent=4)
