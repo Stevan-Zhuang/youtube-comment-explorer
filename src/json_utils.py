@@ -102,12 +102,12 @@ def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
                     "channel_name": replies[idx].channel.name,
                     "comments": channel_replies
                 })
-                channel_replies.clear()
+                channel_replies = []
                 
-            json_data["items"].append({
-                "channel_name": replies[last_idx].channel.name,
-                "comments": channel_replies
-            })
+        json_data["items"].append({
+            "channel_name": replies[last_idx].channel.name,
+            "comments": channel_replies
+        })
 
     replies_path = f"{data_dir}/top_filtered_replies.json"
     with open(replies_path, "w", encoding="utf8") as jsonfile:
