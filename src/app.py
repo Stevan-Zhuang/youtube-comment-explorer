@@ -32,7 +32,7 @@ def results():
             pass
 
     try:
-        replies = get_replies(search, auth_key, "data")
+        replies = get_replies(search, auth_key, "data", comments_sampled=1)
         write_top_filtered_replies(
             get_top_filtered_replies(replies), "src/static/json"
         )

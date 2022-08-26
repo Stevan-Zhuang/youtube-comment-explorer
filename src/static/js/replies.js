@@ -20,6 +20,7 @@ function setReplies() {
                     
                     reply_data = reply["content"] + " 👍";
                     reply_data += reply["likes"].toString() + "\n";
+                    reply_data += reply["time_ago"] + "\n"
                     document.getElementById("replies").innerHTML += reply_data;
                 }
             }

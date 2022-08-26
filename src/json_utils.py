@@ -93,7 +93,8 @@ def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
         for idx in range(len(replies)):
             channel_replies.append({
                 "content": replies[idx].content,
-                "likes": replies[idx].likes
+                "likes": replies[idx].likes,
+                "time_ago": replies[idx].time_ago
             })
 
             if (idx != last_idx
