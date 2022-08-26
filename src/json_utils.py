@@ -76,7 +76,7 @@ def get_replies(video_id: str, auth_key: str, data_dir: str,
                               snippet["authorDisplayName"],
                               snippet["authorProfileImageUrl"])
             reply = Comment(snippet["textDisplay"], channel,
-                            snippet["likeCount"])
+                            snippet["likeCount"], snippet["publishedAt"])
             replies.append(reply)
     return replies
 
@@ -100,12 +100,14 @@ def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
                     and replies[idx + 1].channel != replies[idx].channel):
                 json_data["items"].append({
                     "channel_name": replies[idx].channel.name,
+                    "image_url": replies[idx].channel.image_url,
                     "comments": channel_replies
                 })
                 channel_replies = []
                 
         json_data["items"].append({
             "channel_name": replies[last_idx].channel.name,
+            "image_url": replies[idx].channel.image_url,
             "comments": channel_replies
         })
 
