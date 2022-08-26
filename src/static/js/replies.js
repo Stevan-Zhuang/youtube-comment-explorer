@@ -7,10 +7,10 @@ function setReplies() {
 
                 //console.log(channel);
                 //not complete
-                var img = document.createElement("img");
+                //var img = document.createElement("img");
                 //img.src = 
-                var div = document.getElementById("x");
-                div.appendChild(img);
+                //var div = document.getElementById("x");
+                //div.appendChild(img);
 
                 var channel_name = channel["channel_name"] + "\n";
                 document.getElementById("replies").innerHTML += channel_name;
