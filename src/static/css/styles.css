@@ -1,3 +1,27 @@
 p {
     white-space: pre-line;
+    color: #FFFFFF;
+    font-family: roboto;
+    font-size: 14px;
+}
+
+body {
+    background-color: #181818;
+}
+
+.search {
+    text-align: center;
+    
+}
+
+button {
+    background-color: #303030;
+    border: #121212;
+    color: #FFFFFF
+}
+
+input {
+    background-color: #121212;
+    color: #FFFFFF;
+    border: #303030;
 }
