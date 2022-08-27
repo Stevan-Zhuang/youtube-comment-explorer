@@ -5,12 +5,10 @@ function setReplies() {
             for (ch = 0; ch < data["items"].length; ch++) {
                 var channel = data["items"][ch];
 
-                //console.log(channel);
-                //not complete
-                //var img = document.createElement("img");
-                //img.src = 
-                //var div = document.getElementById("x");
-                //div.appendChild(img);
+                var img = document.createElement("img");
+                img.src = channel["image_url"]
+                var src = document.getElementById("replies");
+                src.appendChild(img);
 
                 var channel_name = channel["channel_name"] + "\n";
                 document.getElementById("replies").innerHTML += channel_name;
