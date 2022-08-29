@@ -1,27 +1,41 @@
+body {
+    font-family: roboto;
+    background-color: #181818;
+}
+
 p {
     white-space: pre-line;
     color: #FFFFFF;
-    font-family: roboto;
     font-size: 14px;
-}
-
-body {
-    background-color: #181818;
 }
 
 .search {
     text-align: center;
-    
-}
-
-button {
-    background-color: #303030;
-    border: #121212;
-    color: #FFFFFF
 }
 
 input {
+    font-size: 15px;
+    padding: 10px 5px;
+    margin: 0px;
+
     background-color: #121212;
     color: #FFFFFF;
-    border: #303030;
+
+    border: 1px solid #303030;
+}
+
+input:focus {
+    outline: none;
+    border:1px solid #1c62b9;
+}
+
+button {
+    font-size: 15px;
+    padding: 11px 8px;
+    margin-right: 43px;
+
+    color: #FFFFFF;
+    background-color: #323232;
+
+    border: none;
 }
