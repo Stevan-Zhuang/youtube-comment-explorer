@@ -4,14 +4,8 @@
         <link rel="stylesheet" href="static/css/styles.css">
     </head>
     <body>
-        <div class="search">
-            <form action="/results">
-                <input type="text" placeholder="Enter YouTube link or video ID"
-                       name="search_query" size=62px><button 
-                       type="submit">Search</button>
-            </form>
-        </div>
-    
+        {% include 'header.html' %}
+
         <p id="replies"></p>
 
         <script type="text/javascript" src="static/js/replies.js"></script>
