@@ -9,7 +9,7 @@ function setReplies(data) {
         var channel = data["items"][ch];
         var img = document.createElement("img");
         img.className = "profile";
-        img.src = channel["image_url"]
+        img.src = channel["image_url"];
         channelCol.appendChild(img);
 
         var commentsCol = repliesRow.insertCell();
@@ -26,8 +26,8 @@ function setReplies(data) {
             var reply = channel["comments"][rp];
             
             replyData = reply["content"] + "\n";
-            replyData += "👍" + reply["likes"].toString();
-            replyData += " " + reply["time_ago"]
+            replyData += reply["time_ago"];
+            replyData += " 👍" + reply["likes"].toString();
 
             comment.innerHTML += replyData;
             commentsCol.appendChild(comment);
