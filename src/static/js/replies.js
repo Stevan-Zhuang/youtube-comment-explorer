@@ -16,7 +16,7 @@ function setReplies(data) {
 
         var username = document.createElement("p");
         username.className = "username";
-        username.innerHTML += channel["channel_name"];
+        username.innerHTML += channel["channel_name"].bold();
         commentsCol.appendChild(username);
 
         for (rp = 0; rp < channel["comments"].length; rp++) {
@@ -25,11 +25,11 @@ function setReplies(data) {
 
             var reply = channel["comments"][rp];
             
-            reply_data = reply["content"] + "\n";
-            reply_data += "👍" + reply["likes"].toString();
-            reply_data += " " + reply["time_ago"]
+            replyData = reply["content"] + "\n";
+            replyData += "👍" + reply["likes"].toString();
+            replyData += " " + reply["time_ago"]
 
-            comment.innerHTML += reply_data;
+            comment.innerHTML += replyData;
             commentsCol.appendChild(comment);
         }
     }
