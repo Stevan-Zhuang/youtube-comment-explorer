@@ -4,12 +4,6 @@ body {
     margin: 0px;
 }
 
-p {
-    white-space: pre-line;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
 .search {
     text-align: center;
     background-color: #202020;
@@ -42,4 +36,28 @@ button {
     background-color: #323232;
 
     border: none;
+}
+
+#replies {
+    white-space: pre-line;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.profile {
+    float: top;
+}
+
+.username {
+    float: top;
+}
+
+.comment {
+    float: top;
+}
+
+td {
+
+    text-align: left;
+    vertical-align: top;
 }
