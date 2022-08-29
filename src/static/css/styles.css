@@ -1,6 +1,7 @@
 body {
     font-family: roboto;
     background-color: #181818;
+    margin: 0px;
 }
 
 p {
@@ -11,6 +12,9 @@ p {
 
 .search {
     text-align: center;
+    background-color: #202020;
+    padding-top: 8px;
+    padding-bottom: 35px;
 }
 
 input {
