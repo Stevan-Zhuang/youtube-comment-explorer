@@ -1,4 +1,4 @@
-from json_utils import get_replies, write_top_filtered_replies
+from json_utils import get_replies, serialize_top_filtered_replies
 from utils import get_top_filtered_replies
 from flask import Flask, render_template, request, abort
 import re
@@ -33,13 +33,14 @@ def results():
 
     try:
         replies = get_replies(search, auth_key, "data")
-        write_top_filtered_replies(
-            get_top_filtered_replies(replies), "src/static/json"
+        json_data = serialize_top_filtered_replies(
+            get_top_filtered_replies(replies)
         )
-        return render_template("results.html")
+        return render_template("results.html", data=json_data)
 
-    except:
-        # Do video search instead
+    except Exception as e:
+        # TODO Do video search instead
+        print(e)
         abort(400, description="Invalid search (temporary error)")
 
 

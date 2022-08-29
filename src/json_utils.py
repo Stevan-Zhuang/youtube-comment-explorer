@@ -80,9 +80,9 @@ def get_replies(video_id: str, auth_key: str, data_dir: str,
             replies.append(reply)
     return replies
 
-def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
+def serialize_top_filtered_replies(replies: List[Comment]) -> str:
     """
-    Write the data of top filtered comments to a JSON file.
+    Serialize the data of top filtered comments to a JSON string.
     """
     json_data = {}
     if len(replies) != 0:
@@ -112,6 +112,4 @@ def write_top_filtered_replies(replies: List[Comment], data_dir: str) -> None:
             "comments": channel_replies
         })
 
-    replies_path = f"{data_dir}/top_filtered_replies.json"
-    with open(replies_path, "w", encoding="utf8") as jsonfile:
-        json.dump(json_data, jsonfile, indent=4)
+    return json.dumps(json_data)

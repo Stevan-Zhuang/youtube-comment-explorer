@@ -9,6 +9,6 @@
         <p id="replies"></p>
 
         <script type="text/javascript" src="static/js/replies.js"></script>
-        <script>setReplies();</script>
+        <script>setReplies({{ data | safe }})</script>
     </body>
 </html>
