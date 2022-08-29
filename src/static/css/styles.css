@@ -45,7 +45,7 @@ button {
 }
 
 .profile {
-    float: top;
+    margin-top: 14px;
 }
 
 .username {
@@ -57,7 +57,6 @@ button {
 }
 
 td {
-
     text-align: left;
     vertical-align: top;
 }
