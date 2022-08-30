@@ -2,13 +2,16 @@
 <html>
     <head>
         <link rel="stylesheet" href="static/css/styles.css">
+        <script type="text/javascript" src="static/js/replies.js"></script>
+        <script type="text/javascript" src="static/js/video.js"></script>
     </head>
     <body>
         {% include 'header.html' %}
 
+        <div id="video"></div>
         <table id="replies"></table>
 
-        <script type="text/javascript" src="static/js/replies.js"></script>
-        <script>setReplies({{ data | safe }})</script>
+        <script>setVideo({{ video | safe }})</script>
+        <script>setReplies({{ replies | safe }})</script>
     </body>
 </html>

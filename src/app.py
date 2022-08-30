@@ -1,5 +1,5 @@
 from json_utils import get_replies, serialize_top_filtered_replies
-from json_utils import get_relevant_video
+from json_utils import get_video, serialize_video
 from utils import get_top_filtered_replies
 from flask import Flask, render_template, request, abort
 import re
@@ -33,16 +33,21 @@ def results():
             pass
 
     try:
-        replies = get_replies(search, auth_key, "data")
-
+        video = get_video(search, True, auth_key, "data")
     except:
-        search = get_relevant_video(search, auth_key, "data")
-        replies = get_replies(search, auth_key, "data")
+        video = get_video(search, False, auth_key, "data")
+        search = video.id
 
-    json_data = serialize_top_filtered_replies(
+    replies = get_replies(search, auth_key, "data")
+
+    replies_data = serialize_top_filtered_replies(
         get_top_filtered_replies(replies)
     )
-    return render_template("results.html", data=json_data)
+    video_data = serialize_video(video)
+
+    return render_template(
+        "results.html", replies=replies_data, video=video_data
+    )
 
 
 if __name__ == "__main__":

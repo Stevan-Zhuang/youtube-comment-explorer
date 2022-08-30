@@ -1,5 +1,4 @@
 function setReplies(data) {
-    console.log(data);
     for (ch = 0; ch < data["items"].length; ch++) {
         var replies = document.getElementById("replies");
         var repliesRow = replies.insertRow();
