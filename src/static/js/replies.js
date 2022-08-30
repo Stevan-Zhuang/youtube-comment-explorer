@@ -23,12 +23,14 @@ function setReplies(data) {
             comment.className = "comment";
 
             var reply = channel["comments"][rp];
-            
-            replyData = reply["content"] + "\n";
-            replyData += reply["time_ago"];
-            replyData += " 👍" + reply["likes"].toString();
+            comment.innerHTML += reply["content"];
 
-            comment.innerHTML += replyData;
+            var commentData = document.createElement("p");
+            commentData.className = "comment-data";
+            commentData.innerHTML += reply["time_ago"];
+            commentData.innerHTML += " 👍" + reply["likes"].toString();
+            comment.appendChild(commentData);
+
             commentsCol.appendChild(comment);
         }
     }

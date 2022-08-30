@@ -65,7 +65,23 @@ button {
     margin-right: 14px;
 }
 
+.username {
+    margin-bottom: 6px;
+}
+.comment {
+    margin-top: 6px;
+}
+
+.comment-data {
+    margin-top: 1px;
+    color: #aaaaaa;
+}
+
 td {
     text-align: left;
     vertical-align: top;
+}
+
+.hidden {
+    display: none;
 }
