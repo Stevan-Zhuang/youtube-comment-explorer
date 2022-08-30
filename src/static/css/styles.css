@@ -1,3 +1,8 @@
+html {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     font-family: roboto;
     background-color: #181818;
@@ -38,7 +43,7 @@ button {
 }
 
 #video {
-    margin-left: 40px;
+    margin-left: 35px;
 }
 
 .thumbnail {
