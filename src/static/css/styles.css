@@ -8,7 +8,7 @@ body {
     text-align: center;
     background-color: #202020;
     padding-top: 8px;
-    padding-bottom: 35px;
+    padding-bottom: 8px;
 }
 
 input {
@@ -42,6 +42,10 @@ button {
     white-space: pre-line;
     color: #FFFFFF;
     font-size: 14px;
+}
+
+img {
+    border-radius: 50%;
 }
 
 .profile {
