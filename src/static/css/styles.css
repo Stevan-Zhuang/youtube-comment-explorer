@@ -10,10 +10,13 @@ body {
 }
 
 .search {
-    text-align: center;
+    position: fixed;
+
     background-color: #202020;
+
     padding-top: 8px;
     padding-bottom: 8px;
+    margin-left: 320px;
 }
 
 input {
