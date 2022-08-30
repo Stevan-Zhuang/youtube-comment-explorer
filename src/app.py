@@ -6,6 +6,8 @@ import re
 import os
 from dotenv import load_dotenv
 
+CHANNELS_TO_LOAD = 5
+
 load_dotenv()
 auth_key = os.environ['AUTH_KEY']
 
@@ -14,7 +16,6 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("home.html")
-
 
 @app.route("/results")
 def results():
@@ -39,16 +40,15 @@ def results():
         search = video.id
 
     replies = get_replies(search, auth_key, "data")
+    replies = get_top_filtered_replies(replies)
 
-    replies_data = serialize_top_filtered_replies(
-        get_top_filtered_replies(replies)
-    )
+    replies_data = serialize_top_filtered_replies(replies)
     video_data = serialize_video(video)
 
     return render_template(
-        "results.html", replies=replies_data, video=video_data
+        "results.html", replies=replies_data, video=video_data,
+        n_to_load_total=len(replies), n_to_load=CHANNELS_TO_LOAD
     )
-
 
 if __name__ == "__main__":
     app.run()

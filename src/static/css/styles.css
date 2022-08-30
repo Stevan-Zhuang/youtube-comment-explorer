@@ -21,7 +21,6 @@ input {
 
     border: 1px solid #303030;
 }
-
 input:focus {
     outline: none;
     border:1px solid #1c62b9;
@@ -84,6 +83,12 @@ td {
     vertical-align: top;
 }
 
-.hidden {
-    display: none;
+.load {
+    background:none;
+    border:none;
+
+    margin-left: 87px;
+}
+.load:hover {
+    text-decoration: underline;
 }

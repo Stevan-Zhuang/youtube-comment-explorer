@@ -49,7 +49,7 @@ def filter_replies(replies: List[Comment], channels: List[Channel],
         result.extend(channel_replies[:sample])
     return result
 
-def get_top_filtered_replies(replies: List[Comment], n_channels: int=5,
+def get_top_filtered_replies(replies: List[Comment], n_channels: int=None,
                              minimum: int=1, sample: int=3,
                              duplicates=False) -> List[Comment]:
     """

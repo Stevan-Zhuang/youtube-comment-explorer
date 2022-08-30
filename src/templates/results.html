@@ -10,8 +10,11 @@
 
         <div id="video"></div>
         <table id="replies"></table>
+        <div id="load-more"></div>
 
         <script>setVideo({{ video | safe }})</script>
-        <script>setReplies({{ replies | safe }})</script>
+        <script>setAllReplies({{ replies | safe }},
+                              {{ n_to_load_total }},
+                              {{ n_to_load }})</script>
     </body>
 </html>
