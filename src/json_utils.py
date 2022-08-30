@@ -45,6 +45,19 @@ def write_replies(comment_id: str, video_id: str, auth_key: str,
     }
     write_json("comments", params, file_path)
 
+def write_relevant_video(query: str, auth_key: str, file_path: str) -> None:
+    """
+    Write the most relevant video to query to a JSON file.
+    """
+    params = {
+        "part": "snippet",
+        "q": query,
+        "type": "video",
+        "maxResults": 1,
+        "key": auth_key
+    }
+    write_json("search", params, file_path)
+
 def read_json(file_path: str) -> dict:
     """
     Return the JSON file found at file_path as a dict.
@@ -113,3 +126,14 @@ def serialize_top_filtered_replies(replies: List[Comment]) -> str:
         })
 
     return json.dumps(json_data)
+
+def get_relevant_video(query: str, auth_key: str, data_dir: str) -> str:
+    """
+    Return the video ID the most relevant video to query by saving it to a
+    JSON file and reading it.
+    """
+    relevant_video_path = f"{data_dir}/relevant_video.json"
+    write_relevant_video(query, auth_key, relevant_video_path)
+
+    relevant_video_data = read_json(relevant_video_path)
+    return relevant_video_data["items"][0]["id"]["videoId"]
