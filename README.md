@@ -7,3 +7,8 @@ Given a YouTube link or YouTube video ID, this program analyzes the replies to p
 
 Accounts are evaluated to be bots based soley off the number of replies to comments that they make. As a result, the less popular a YouTube video is, the more likely it is for the results to be innaccurate, as bots do not comment often on unpopular videos.
 
+### Showcase
+![](https://github.com/Stevan-Zhuang/youtube-comment-explorer/blob/master/showcase/home.png)
+![](https://github.com/Stevan-Zhuang/youtube-comment-explorer/blob/master/showcase/top2.png)
+![](https://github.com/Stevan-Zhuang/youtube-comment-explorer/blob/master/showcase/top1.png)
+![](https://github.com/Stevan-Zhuang/youtube-comment-explorer/blob/master/showcase/bottom1.png)
